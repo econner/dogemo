@@ -26,6 +26,26 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Context processors
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # Required by allauth template tags
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
+
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 
 # Application definition
 
@@ -37,13 +57,21 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # Third-party apps.
     'debug_toolbar',
+    'django_extensions',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # Our apps.
     'accounts',
 )
+
+# TODO fix this crap.
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     # Core middlewares.
@@ -103,3 +131,21 @@ INTERNAL_IPS = ('172.16.42.1')
 # Templates
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+# Email settings
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'shibe@dogemo.com'
+EMAIL_HOST_PASSWORD = 'OqSkgh0MLk6GSyFyjUgnZjbozCtuHfhs'
+
+# App settings
+
+ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
+ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+AUTH_USER_MODEL = "accounts.User"
+

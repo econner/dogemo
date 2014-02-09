@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta content="text/html" />
+<title>Dogemo</title>
+</head>
+<body>
+    <h1>Dogemo</h1>
+    <p>Much doge. Wow coins.</p>
+
+    {% if message %}
+	<div class="notice">
+	{{ message }}
+	</div>
+	{% endif %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
