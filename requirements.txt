@@ -1,2 +1,5 @@
-Django
+Django==1.6.2
 django-debug-toolbar
+django-allauth
+django-extensions
+pygraphviz
