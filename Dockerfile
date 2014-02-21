@@ -1,5 +1,6 @@
 FROM orchardup/python:2.7
 RUN apt-get update -qq && apt-get install -y python-mysqldb
+RUN apt-get install -y python-pygraphviz
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
